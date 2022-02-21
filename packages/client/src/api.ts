@@ -3,16 +3,16 @@ import {
   Difficulty,
   GameStatus,
   Player,
-} from '@mapistry/take-home-challenge-shared';
+} from "@mapistry/take-home-challenge-shared";
 
 export const begin = async (
   difficulty: Difficulty,
-  whoIsFirst: Player,
+  whoIsFirst: Player
 ): Promise<GameStatus> => {
-  const response = await fetch('/api/begin', {
-    method: 'post',
+  const response = await fetch("/api/begin", {
+    method: "post",
     headers: {
-      'content-type': 'application/json',
+      "content-type": "application/json",
     },
     body: JSON.stringify({ difficulty, whoIsFirst }),
   });
@@ -23,12 +23,12 @@ export const begin = async (
 
 export const move = async (
   board: Board,
-  difficulty: Difficulty,
+  difficulty: Difficulty
 ): Promise<GameStatus> => {
-  const response = await fetch('/api/move', {
-    method: 'post',
+  const response = await fetch("/api/move", {
+    method: "post",
     headers: {
-      'content-type': 'application/json',
+      "content-type": "application/json",
     },
     body: JSON.stringify({ board, difficulty }),
   });
