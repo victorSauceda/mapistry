@@ -4,15 +4,15 @@ import getStatus from "../helpers/getStatus";
 import Checkbox from "./Checkbox";
 const difficultLevel = {
   easy: true,
-  medium: false,
   hard: false,
 };
 const Board = () => {
+  const [difficultyLevel, setDifficultyLevel] = useState(difficultLevel);
   const [state, dispatch] = React.useReducer(gameReducer, {
     squares: Array(9).fill(null),
     xIsNext: true,
   });
-  const [difficultyLevel, setDifficultyLevel] = useState(difficultLevel);
+
   const { squares, xIsNext } = state;
 
   /**
@@ -44,7 +44,6 @@ const Board = () => {
   };
 
   const status = getStatus(squares, xIsNext);
-  console.log(squares);
   return (
     <div>
       <div className="status">{status}</div>
@@ -63,11 +62,15 @@ const Board = () => {
         {renderSquare(7)}
         {renderSquare(8)}
       </div>
-      <button onClick={() => resetBoard(squares)}>Reset Board</button>
+      <button style={{ marginTop: "1rem" }} onClick={() => resetBoard(squares)}>
+        Reset Board
+      </button>
 
       {squares.every((square: any) => square == null) && (
         <>
-          <p>First move is: {xIsNext ? "X" : "O"}</p>
+          <p style={{ margin: "1rem 0" }}>
+            First move is: {xIsNext ? "x" : "o"}
+          </p>
           <button onClick={() => chooseFirstPlayer(squares)}>
             Click here to change who goes first
           </button>
